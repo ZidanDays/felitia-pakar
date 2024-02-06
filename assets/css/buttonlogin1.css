@@ -1,0 +1,22 @@
+.button-login a {
+  background-color: rgb(255, 0, 0) !important;
+  color: white !important;
+  border: none !important;
+  padding: 13px 45px !important;
+  border-radius: 10px !important;
+  transition: 0.5s !important;
+}
+.button-login:hover a {
+  background-color: rgb(255, 145, 0) !important;
+  color: white !important;
+  border: none !important;
+  padding: 13px 46px !important;
+  border-radius: 1px !important;
+  transition: 0.5s !important;
+}
+
+.main-button {
+  display: flex !important;
+  gap: 10px !important; /* Jarak antar elemen */
+  justify-content: center;
+}
