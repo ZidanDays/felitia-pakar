@@ -190,6 +190,10 @@ if ($query){
 
                                    $jumlah_akhir = $subtotal - $subtotal_ragu - $subtotal_belum;
 
+                                   $presentase_siap = $subtotal / ($subtotal + $subtotal_ragu + $subtotal_belum) * 100;
+                                   $presentase_ragu = $subtotal_ragu / ($subtotal + $subtotal_ragu + $subtotal_belum) * 100;
+                                   $presentase_belum = $subtotal_belum / ($subtotal + $subtotal_ragu + $subtotal_belum) * 100;
+
     ?>
    
 
@@ -199,7 +203,7 @@ if ($query){
  <tr>
     <td width="20%"><b>YA SIAP UNTUK SEKOLAH </b></td>
     <td width="2%"><b>:</b></td>
-    <td width="78%"> <?php echo $subtotal;  ?> JAWABAN ANAK YANG MENYATAKAN SIAP SEKOLAH</td>
+    <td width="78%"> <?php echo $subtotal;  ?> JAWABAN YANG MENYATAKAN SIAP SEKOLAH</td>
     
   </tr>
 
@@ -210,7 +214,8 @@ if ($query){
 
     <td width=""><b>RAGU RAGU </b></td>
     <td width=""><b>:</b></td>
-    <td  width=""> <?php echo $subtotal_ragu;  ?> JAWABAN ANAK YANG MENYATAKAN RAGU RAGU UNTUK BERSEKOLAH </td>
+    <!-- <td  width=""> <?php echo $subtotal_ragu;  ?> JAWABAN ANAK YANG MENYATAKAN RAGU RAGU UNTUK BERSEKOLAH </td> -->
+    <td  width=""> <?php echo $subtotal_ragu;  ?> JAWABAN YANG MENYATAKAN BELUM TERLALU SIAP UNTUK BERSEKOLAH </td>
 
   </tr>
 
@@ -220,7 +225,7 @@ if ($query){
 
     <td width=""><b>BELUM SIAP SEKOLAH </b></td>
     <td width=""><b>:</b></td>
-    <td  width=""><?php echo $subtotal_belum;  ?> JAWABAN ANAK YANG MENYATAKAN  BELUM SIAP SEKOLAH</td>
+    <td  width=""><?php echo $subtotal_belum;  ?> JAWABAN YANG MENYATAKAN  BELUM SIAP SEKOLAH</td>
 
   </tr>
 
@@ -236,11 +241,19 @@ if ($query){
 
 
 // Dengan Colon
-if ($jumlah_akhir >= 6): 
-  echo 'ANAK ANDA DINYATAKAN SIAP UNTUK BERSEKOLAH';
-elseif ($jumlah_akhir <  6):
-  echo 'ANAK ANDA MASIH BELUM SIAP UNTUK BERSEKOLAH';
+// if ($jumlah_akhir >= 12): 
+//   echo 'ANAK ANDA DINYATAKAN SIAP UNTUK BERSEKOLAH';
+// elseif ($jumlah_akhir <  12):
+//   echo 'ANAK ANDA MASIH BELUM SIAP UNTUK BERSEKOLAH';
 
+// endif;
+
+if ($presentase_siap >= 50) :
+  echo 'ANAK ANDA DINYATAKAN SIAP UNTUK BERSEKOLAH (P01)';
+elseif ($presentase_ragu >= 50) :
+  echo 'ANAK ANDA MASIH RAGU-RAGU UNTUK BERSEKOLAH (P02)';
+else :
+  echo 'ANAK ANDA MASIH BELUM SIAP UNTUK BERSEKOLAH (P03)';
 endif;
 
 
@@ -255,19 +268,13 @@ endif;
 
 
 // Dengan Colon
-if ($jumlah_akhir >= 6): 
+if ($jumlah_akhir >= 12): 
   echo 'ANAK ANDA DINYATAKAN SIAP UNTUK BERSEKOLAH';
-elseif ($jumlah_akhir <  6):
+elseif ($jumlah_akhir <  12):
   echo 'ANAK ANDA MASIH BELUM SIAP UNTUK BERSEKOLAH';
 
 endif;
-
-
 ?> " readOnly />
-
-   
-    
-
    
   </tr>
 
